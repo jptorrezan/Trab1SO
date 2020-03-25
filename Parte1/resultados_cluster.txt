@@ -1,0 +1,33 @@
+% time     seconds  usecs/call     calls    errors syscall
+------ ----------- ----------- --------- --------- ----------------
+ 58.77    0.000191         191         1           wait4
+ 18.77    0.000061          61         1           clone
+ 14.46    0.000047          16         3           open
+  4.31    0.000014           2         6           brk
+  1.85    0.000006           3         2           read
+  1.54    0.000005           2         3           close
+  0.31    0.000001           1         1           getpid
+------ ----------- ----------- --------- --------- ----------------
+100.00    0.000325                    17           total
+
+
+     0.000000 brk(NULL)                 = 0x1e4f000
+     0.000279 open("/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+     0.000169 close(3)                  = 0
+     0.000122 open("/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+     0.000067 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0P\t\2\0\0\0\0\0"..., 832) = 832
+     0.000317 close(3)                  = 0
+     0.000552 brk(NULL)                 = 0x1e4f000
+     0.000056 brk(0x1e4f064)            = 0x1e4f064
+     0.000059 brk(0x1e4f0c8)            = 0x1e4f0c8
+     0.000133 brk(0x1e700c8)            = 0x1e700c8
+     0.000053 brk(0x1e71000)            = 0x1e71000
+     0.000064 open("HelloWorld.txt", O_RDONLY) = 3
+     0.000069 read(3, "Hello World", 11) = 11
+     0.000062 close(3)                  = 0
+     0.000060 getpid()                  = 12536
+     0.000055 clone(child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7fea6fb009d0) = 12537
+     0.000171 wait4(12537, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 12537
+     0.000326 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=12537, si_uid=1159, si_status=0, si_utime=0, si_stime=0} ---
+     0.000242 +++ exited with 0 +++
+
