@@ -1,0 +1,8 @@
+Tempo decorrido em segundos:22.48
+Tempo decorrido em modo Kernel: 0.01
+Tempo decorrido em modo usuario: 22.14
+Porcentagem de CPU: 98%
+Numero de vezes que o processo sofreu mudanca de contexto involuntaria: 1985
+Numero de vezes que houve mudanca de contexto voluntaria: 2
+Numero de arquivos de entrada do programa: 0
+Numero de arquivos de saida do programa: 0

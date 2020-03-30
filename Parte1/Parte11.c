@@ -34,25 +34,19 @@
 int gerenciamentoArquivos(){
   int arqv, readReturn;
   char *conteudoArqv = (char*)calloc(30, sizeof(char));
-//  printf("System call 'open' => abrir arquivo.\n" );
   arqv = open("HelloWorld.txt", O_RDONLY);
   if(arqv < 0 ){
-  //  printf("\tErro na abertura do arquivo\n" );
     return -1;
   }
-//  printf("\tArquivo aberto = [%d] (3 on sucess)\n", arqv);
-//  printf("System call 'read' => ler do arquivo aberto\n" );
   readReturn = read(arqv, conteudoArqv, 11);
   conteudoArqv[readReturn] = '\0';
-//  printf("\tForam lidos [%d] bytes.\n", readReturn);
-//  printf("\tO conteudo lido no arquivo foi: %s\n", conteudoArqv);
-//  printf("System call 'close' => fechar o arquivo\n" );
+
   if(close(arqv) < 0){
-//    printf("\tErro no fechamento arquivo.\n" );
+
     free(conteudoArqv);
     return -1;
   }
-//  printf("\tArquivo fechado com sucesso.\n" );
+
   free(conteudoArqv);
   return 0;
 
@@ -72,21 +66,18 @@ void gerenciamentoProcessos(){
   int pidChild;
   int wstatus;
   int pidSelf;
-//  printf("System call 'getpid' => retornar o PID do processo.\n" );
+
   pidSelf = getpid();
-//  printf("\tPID do processo pai: %d\n", pidSelf);
-//  printf("System call 'fork' => clonar o processo.\n" );
+
   if(pidChild = fork()){  //processo pai
-  //  printf("\tPID do processo filho: %d\n", pidChild);
-//    printf("System call 'waitpid' => aguardar um sinal do processo filho criado.\n" );
+
     waitpid(pidChild, &wstatus, 0);
-  //  printf("\tSou o processo Pai, e o processo filho foi encerrado.\n" );
+  
 
   }
   else{ //processo filho
     for(int i = 0; i < 5000; i++);
-  //  printf("\t---Olá, eu sou o processo filho!.\n" );
-//    printf("\t---Vou morrer para o programa continuar!.\n" );
+
     exit(EXIT_SUCCESS);
   }
 
@@ -107,21 +98,19 @@ void gerenciamentoProcessos(){
 int gerenciamentoMemoria(){
     intptr_t oldEnd;
   	intptr_t newEnd, addValue = 100;
-//    printf("System call 'sbrk' => obter o valor do process break.\n" );
+
   	oldEnd = (intptr_t) sbrk(0);
-//    printf("\tProcess break inicial = [%lu]\n",  oldEnd);
-  //  printf("System call 'sbrk' => incrementar o valor do process break em 100 posições.\n" );
+
   	newEnd = (intptr_t) sbrk(addValue);
     newEnd = (intptr_t) sbrk(0);
-  //  printf("\tNovo process break = [%lu]\n",  newEnd);
-  //  printf("System call 'brk' => incrementar o valor do process break em 100 posições.\n" );
+
     if(brk( (void *) (newEnd + addValue) ) != 0){
-    //  printf("Erro na execução de 'brk'\n" );
+
       return -1;
     }
     else{
       newEnd = (intptr_t) sbrk(0);
-    //  printf("\tNovo process break = [%lu]\n",  newEnd);
+
       return 0;
     }
 }
